@@ -818,17 +818,47 @@ input.error{ border-bottom: 2px solid red !important; }
 }
 
 .closebtn{ display: none; }
+table.acc-tblcutom tbody tr td{ padding: 3px 0; }
+table.acc-tblcutom tbody tr td strong{ font-size: 16px !important; font-weight: 500;  }
+
+table.acc-tblcutom tbody tr.adition-title td strong{ color: #4290ca; }
+
+.p-left-15{ padding-left: 15px !important; }
+
+
+.acc-tblcutom{}
+
+.stepbox-1 .label-icon label{ height: 100px; width: 100px; }
+.stepbox-1 .label-icon i{ font-size: 30px; margin-bottom: 8px; margin-top: 10px; }
+.stepbox-1 .radioholder{ font-size: 16px; padding: 10px 0; }
+
+.stepbox-2 .label-icon label { margin: 0; padding: 30px 10px 0; height: 140px; width: 140px;}
+.stepbox-2 .radioholder{ font-size: 16px; padding: 10px 0; }
+
+.stepbox-4 .radioholder{ font-size: 16px; }
+.stepbox-4 .label-icon{ width: 25%; margin: 0; padding: 0 15px; }
+.stepbox-4 .label-icon label{ height: 150px; padding: 40px 0 0; }
+.stepbox-4 .label-icon i{ font-size: 20px; } 
+
+.stepbox-6 .label-icon{ width: 50%; margin: 0; padding: 0 10px; }
+.stepbox-6 .radioholder{ font-size: 11px; }
+.stepbox-6 .label-icon i{ font-size: 20px; }
+
+.stepbox-6 .label-icon label{ min-height: 100px; }
+
+
 /** Dashboard Pages CSS Close **/
 
 
 
 @media all and (max-width: 767px) {
-  #progressbar li{ width: 33.3333%; font-size:12px;  }
+  .stepholder{ display: none; }
+  #progressbar li{ width: 33.3333%; font-size:12px; display: none;  }
   #progressbar li:before{ width: 30px; height: 30px; line-height: 30px; font-size: 14px; }
 
   .dblogo img{ width: 100%; padding:0 20px; }
 
-
+  .stepbox-4 .label-icon{ width: 33.33333%; }
 
 
 }
@@ -847,6 +877,9 @@ input.error{ border-bottom: 2px solid red !important; }
   .dbadmin{ padding: 0; }
   .sidenav a{padding-left: 0;}
   .closebtn{ position: absolute;top: 0; right: 0; }
+
+.stepbox-4 .label-icon{ width: 100%; }
+
 }
 
 

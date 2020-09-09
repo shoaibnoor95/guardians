@@ -18,7 +18,6 @@ const upload = multer({
         });
 
 
-router.get('/',getLogin);
 router.get('/login',getLogin);
 router.post('/login',postLogin);
 router.get('/register',getRegister);

@@ -3,8 +3,8 @@ const moment = require('moment');
 
 exports.getAllApplications = async (req,res) => {
     try {
-        $users = await User.find({isApprove: null, isSubmit : true}).lean();
-        res.render('admin/applications',{'users':$users,'moment': moment});
+        const users = await User.find({isApprove: null, isSubmit : true}).lean();
+        res.render('admin/applications',{'users':users,'moment': moment});
     } catch (err) {
         console.log(err);
     }
@@ -13,7 +13,7 @@ exports.getAllApplications = async (req,res) => {
 exports.getApplication = async (req,res) => {
     try {
          const user = await User.findOne({_id : req.params.id}).lean();
-         res.render('admin/application-detail',{user});
+         res.render('admin/application-detail',{user, 'moment': moment});
         
     } catch (err) {
         console.log(err);

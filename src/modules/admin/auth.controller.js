@@ -16,10 +16,10 @@ exports.postLogin = (req, res, next) => {
 };
 
 exports.getDasboard = async (req,res) => {
-   const applicationCount = await User.find({isSubmit : true}).count();
-   const applicationAcceptCount = await User.find({isApprove: true}).count();
-   const applicationRejectCount = await User.find({isApprove: false}).count();
-   const applicationPendingCount = await User.find({isApprove: null}).count();
+   const applicationCount = await User.find({isSubmit : true}).countDocuments();
+   const applicationAcceptCount = await User.find({isApprove: true}).countDocuments();
+   const applicationRejectCount = await User.find({isApprove: false}).countDocuments();
+   const applicationPendingCount = await User.find({isApprove: null}).countDocuments();
     //$user = await User.findOne({_id : req.params.id}).lean();
     res.render('admin/dashboard',{
         'applicationCount': applicationCount,

@@ -25,6 +25,53 @@
     ></script>
     <link rel="stylesheet" type="text/css" href="assets/css/main.css" />
   </head>
+
+  <script>
+    $(function() {
+        $('#file_modal').on('hidden.bs.modal', function (e) {
+            let modal = $(e.target);
+            if (modal.attr('dismissed') == 'false') {
+                set_checked(modal.find('#decline_btn').get(0), false)
+            }
+        })
+     });  
+    function set_checked(el, accepted = true){
+        let element = $(el);
+        let modal = $('#file_modal');
+        let id = '#'+modal.find('.el_id').val();
+        let span = $(id).next().find('strong');
+        span.show();
+        if (accepted) {
+            span.css('color', 'green');
+            span.text('Accepted');
+        } else {
+            span.css('color', 'red');
+            span.text('Declined');
+        }
+        $(id).prop('checked', accepted);
+        modal.attr('dismissed', true)
+        modal.modal('hide');
+    }
+
+    let checkBoxes = [{"key":"agrem","title":"Client Agreement","file":"assets\/pdf\/Customer Identification Program Notice.pdf"},{"key":"day","title":"Day Trading Risk Disclosure","file":"assets\/pdf\/Guardian Day Trading Risk Disclosure.pdf"},{"key":"penny","title":"Penny Stocks Disclosure","file":"assets\/pdf\/Penny Stock Risk Disclosure.pdf"},{"key":"anti_money","title":"Anti Money Laundering Disclosure","file":""},{"key":"online_risj","title":"Understanding Online Trading Risk Disclosure","file":""},{"key":"margin_disc","title":"Margin Disclosure","file":"assets\/pdf\/Guardian Trading Margin Risk.pdf"},{"key":"petren","title":"Pattern Day Trade Disclosure","file":""}];
+    //let link = 'file:///C:/Users/pc/Downloads/Steps-Form%20Maker/';
+     link = 'file:///../public/assets/pdf/';
+    
+    function showFileModal(el, index) {
+        let element = $(el);
+        let modal = $('#file_modal');
+        modal.find('.modal-title').text(checkBoxes[index].title);
+        modal.find('.el_id').val(checkBoxes[index].key);
+        let file_path = link+checkBoxes[index].file;
+        if (checkBoxes[index].file == '') {
+            file_path = null;
+        }
+        modal.find('iframe').attr('src', file_path);
+        modal.attr('dismissed', false)
+        modal.modal('show');
+    }
+</script>
+
   <body>
     <div class="container-fluid">
       <div class="row topheader">
@@ -924,7 +971,7 @@
                     <div class="text-left col-sm-12">
                       <label class="labelholder">
                         <input
-                          value="Yes"
+                          value="1"
                           type="checkbox"
                           required="required"
                           name="differentMailingAddress"
@@ -1789,7 +1836,7 @@
                           type="checkbox"
                           id="trusted_person"
                           name="trustedPerson"
-                          value="Yes"
+                          value="1"
                         />
                         Would you like add a Trusted Contact Person
                         <span class="checkmark"></span>
@@ -2000,8 +2047,8 @@
                         <input
                         class="form-control validate"
                         required="required"
-                          type="text"
-                          name="empName"
+                          type="text" id="emplyerName"
+                          name="emplyerName"
                         />
                       </div>
                       <div class="form-inline col-sm-4">
@@ -2013,6 +2060,7 @@
                         required="required"
                           type="text"
                           name="occupation"
+                          id="occupation"
                         />
                       </div>
                     </div>
@@ -2026,6 +2074,7 @@
                               >
                               <input
                                 type="text"
+                                id="addressEmploye"
                                 name="addressEmploye"
                                 class="form-control validate"
                           required="required"
@@ -2037,6 +2086,7 @@
                                 <input
                                   type="text"
                                   name="yearsEmploye"
+                                  id="yearsEmploye"
                                   class="form-control validate"
                           required="required"
                                 />
@@ -2055,7 +2105,7 @@
                                 <label>Country</label>
                                 <select
                                   name="employeeCountry"
-                                  id="employee_country"
+                                  id="employeeCountry"
                                   class="selectpicker form-control"
                                 >
                                   <option value="Albania">
@@ -2847,6 +2897,7 @@
                                 required="required"
                                   type="number"
                                   name="employeerPhoneNumber"
+                                  id="employeerPhoneNumber"
                                 />
                               </div>
                             </div>
@@ -4696,12 +4747,12 @@
                         <br /><br />
                         <div class="col-md-12 text-left">
                           <div>
-                            <label for="Stocks" class="labelholder">
+                            <label for="clientAgreement" class="labelholder">
                               <input
                                 type="checkbox"
                                 onclick="showFileModal(this, 0)"
-                                name="stocks"
-                                id="Stocks"
+                                name="clientAgreement"
+                                id="clientAgreement"
                               />
                               Client Agreement
                               <span
